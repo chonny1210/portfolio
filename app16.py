@@ -23,13 +23,21 @@ with st.container(): # with 절로 하나의 기능을 하는 코드를 묶어�
             st.video(uploaded_file)   # 영상 플레이해라 !
         else:
             st.write("원본 영상을 표시하려면 비디오 파일을 업로드하세요.")
+            result_placeholder.markdown(
+                """
+                <div style='width:100%; height:620px; background-color:#d3d3d3; display:flex; align-items:center; justify-content:center; border-radius:5px;'>
+                    <p style='color:#888;'>여기에 사물 검출 결과가 표시됩니다.</p>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
     with col2:    
         st.header("사물 검출 결과 영상")  # col2 에 해당하는 영역의 제목
         if "processed_video" in st.session_state: # 사물검출 완료된 비디오가 있으면
             st.video(st.session_state["processed_video"]) # 그 비디오를 플레이해라
         else: 
-            st.write("여기에 사물 검출 결과가 표시됩니다.")
+            #st.write("여기에 사물 검출 결과가 표시됩니다.")
 
 # 사물 검출 버튼 추가
 if st.button("사물 검출 실행"):  # 사물검출 실행이라는 버튼을 누르면
